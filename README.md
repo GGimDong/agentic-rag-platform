@@ -47,7 +47,46 @@ agentic-rag-platform/
 ```
 
 ## Stack
-- **Orchestration**: LangGraph
-- **LLM Runtime**: llama.cpp (local)
-- **RAG**: FAISS + sentence-transformers
-- **API**: FastAPI
+
+| Layer | Technology |
+|-------|------------|
+| Orchestration | LangGraph |
+| LLM Runtime | ollama (llama.cpp 기반) |
+| LLM Model | Qwen2.5:3b |
+| RAG | FAISS + sentence-transformers |
+| Embedding | paraphrase-multilingual-MiniLM-L12-v2 |
+| API | FastAPI |
+
+## Environment Setup
+
+### 1. Python 의존성 설치
+
+```bash
+pip install -r requirements.txt
+```
+
+### 2. AI Core (ollama) 설치 및 모델 준비
+
+```bash
+# ollama 설치
+brew install ollama
+
+# 모델 다운로드 (약 2GB)
+ollama pull qwen2.5:3b
+```
+
+### 3. ollama 서버 실행
+
+```bash
+ollama serve
+```
+
+서버가 뜨면 `http://localhost:11434` 에서 OpenAI 호환 API로 접근 가능합니다.
+
+> **Model Router**: 현재 로컬(ollama) 기준으로 구현되어 있습니다. `aip/core/model_router.py`의 `Backend.CLOUD`로 전환하면 외부 클라우드 LLM API로 연결할 수 있습니다.
+
+### 4. 실행
+
+```bash
+python -m examples.vehicle_diagnosis.app
+```
