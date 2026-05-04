@@ -27,9 +27,9 @@ Multi-agent orchestration platform with RAG pipeline, designed as a reusable AI 
 
 ```
 agentic-rag-platform/
-├── platform/                  # Generic orchestration layer (reusable)
+├── aip/                       # Generic orchestration layer (reusable)
 │   ├── core/
-│   │   ├── base_agent.py      # SpecialistAgent abstract base class
+│   │   ├── base_agent.py      # BaseAgent abstract class + AgentResult
 │   │   ├── supervisor.py      # Query routing logic
 │   │   ├── rag_retriever.py   # RAG retrieval (domain-agnostic)
 │   │   ├── model_router.py    # Local / Cloud inference routing
@@ -43,8 +43,7 @@ agentic-rag-platform/
         │   ├── diagnostic_agent.py
         │   ├── driving_assistant.py
         │   └── repair_advisor.py
-        ├── data/
-        └── app.py
+        └── app.py             # Entry point
 ```
 
 ## Stack
